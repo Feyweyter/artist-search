@@ -39,6 +39,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.4.3",
     "react-smooth-collapse": "^2.1.0",
+    "react-spinners": "^0.9.0",
     "react-tooltip": "^4.2.8",
     "redux": "^4.0.2",
     "redux-actions": "^2.6.5",

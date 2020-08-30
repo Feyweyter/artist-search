@@ -10,12 +10,18 @@ import {
 } from 'react-router-dom';
 
 import SearchPage from './SearchPage';
+import InfoPage from './InfoPage';
 
 
-let routes = [
+const routes = [
     {
         path: '/',
         render: () => <SearchPage/>,
+        exact: true,
+    },
+    {
+        path: '/:name',
+        render: () => <InfoPage/>,
         exact: true,
     },
 ];

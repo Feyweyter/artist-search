@@ -1,20 +1,28 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
 import Input from '@material-ui/core/Input';
 import actions from './effects/actions';
 import {useDispatch, useSelector} from 'react-redux';
+import ArtistList from './components/ArtistList';
+import {LoaderScreen} from '../../components';
+
+import styles from './index.module.scss';
 
 const Index = () => {
     const dispatch = useDispatch();
+    const {query, list, isLoading} = useSelector((state) => state.ArtistSearch);
+    const [input, setInput] = useState(query);
 
     const handleChange = (e) => {
-        console.log(e.target.value);
-        dispatch(actions.getArtistsRequest(e.target.value));
+        const val = e.target.value;
+        setInput(val);
+        dispatch(actions.getArtistsRequest(val));
     };
 
     return (
-        <div>
-            <Input autoFocus onChange={handleChange}/>
+        <div className={styles.main}>
+            <Input autoFocus value={input} onChange={handleChange}/>
+            <ArtistList list={list}/>
+            {isLoading && <LoaderScreen/>}
         </div>
     );
 };

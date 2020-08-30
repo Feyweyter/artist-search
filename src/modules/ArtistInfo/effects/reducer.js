@@ -3,35 +3,32 @@ import {reducerGenerator} from '../../../store/helpers';
 import actions from './actions';
 
 const {
-    getArtistsRequest,
-    getArtistsFailure,
-    getArtistsSuccess,
-    clearArtistsResults,
+    getArtistInfoRequest,
+    getArtistInfoFailure,
+    getArtistInfoSuccess,
+    clearArtistInfoResults,
 } = actions;
 
 export const initialState = {
-    list: null,
+    bio: null,
     isLoading: false,
-    query: '',
-    page: 1,
 };
 
 const HANDLERS = {
-    [getArtistsRequest]: (state) => ({
+    [getArtistInfoRequest]: (state) => ({
         ...state,
         isLoading: true,
     }),
-    [getArtistsSuccess]: (state, payload) => ({
+    [getArtistInfoSuccess]: (state, payload) => ({
         ...state,
         isLoading: false,
-        list: payload['opensearch:totalResults'] ? payload.artistmatches.artist : [],
-        query: payload['opensearch:Query'].searchTerms,
+        bio: payload.bio,
     }),
-    [getArtistsFailure]: (state) => ({
+    [getArtistInfoFailure]: (state) => ({
         ...state,
         isLoading: false,
     }),
-    [clearArtistsResults]: () => ({
+    [clearArtistInfoResults]: () => ({
         ...initialState,
     }),
     ...initialState,

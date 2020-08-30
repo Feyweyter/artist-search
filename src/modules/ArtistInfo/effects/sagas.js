@@ -6,37 +6,35 @@ import {
 import {
     axiosAdapter,
     sagaGenerator,
-    constants,
 } from '../../../store/helpers';
 
 import actions from './actions';
 
 const {
-    getArtistsRequest,
-    getArtistsFailure,
-    getArtistsSuccess,
-    clearArtistsResults,
+    getArtistInfoRequest,
+    getArtistInfoFailure,
+    getArtistInfoSuccess,
+    clearArtistInfoResults,
 } = actions;
 
 const HANDLERS = {
-    * [getArtistsRequest]({payload = ''}) {
+    * [getArtistInfoRequest]({payload = ''}) {
         try {
             if (payload) {
                 const response = yield call(axiosAdapter, {
                     method: 'get',
                     params: {
-                        method: 'artist.search',
+                        method: 'artist.getinfo',
                         artist: payload,
-                        limit: 100,
                     }
                 });
-                const {results} = response.data;
-                yield put(getArtistsSuccess(results));
+                const {artist} = response.data;
+                yield put(getArtistInfoSuccess(artist));
             } else {
-                yield put(clearArtistsResults());
+                yield put(clearArtistInfoResults());
             }
         } catch (error) {
-            yield put(getArtistsFailure());
+            yield put(getArtistInfoFailure());
         }
     },
 };
