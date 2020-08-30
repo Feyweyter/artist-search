@@ -21,8 +21,7 @@ const Index = () => {
     return (
         <div className={styles.main}>
             <Input autoFocus value={input} onChange={handleChange}/>
-            <ArtistList list={list}/>
-            {isLoading && <LoaderScreen/>}
+            {isLoading ? <LoaderScreen/> : <ArtistList list={list} query={input}/>}
         </div>
     );
 };

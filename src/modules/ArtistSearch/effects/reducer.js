@@ -10,7 +10,7 @@ const {
 } = actions;
 
 export const initialState = {
-    list: null,
+    list: [],
     isLoading: false,
     query: '',
     page: 1,
