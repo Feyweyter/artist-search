@@ -7,10 +7,12 @@ const {
     getArtistInfoFailure,
     getArtistInfoSuccess,
     clearArtistInfoResults,
+    getArtistAlbumsSuccess,
 } = actions;
 
 export const initialState = {
     bio: null,
+    albums: [],
     isLoading: false,
 };
 
@@ -27,6 +29,11 @@ const HANDLERS = {
     [getArtistInfoFailure]: (state) => ({
         ...state,
         isLoading: false,
+    }),
+    [getArtistAlbumsSuccess]: (state, payload) => ({
+        ...state,
+        isLoading: false,
+        albums: payload.album,
     }),
     [clearArtistInfoResults]: () => ({
         ...initialState,

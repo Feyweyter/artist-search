@@ -1,5 +1,6 @@
 .info {
   padding: 50px;
+  line-height: 25px;
 
   .header {
     display: grid;
@@ -9,9 +10,17 @@
     text-align: center;
     font-size: 30px;
     font-weight: 700;
+    padding-bottom: 20px;
   }
 
   .link {
     color: #30ca89;
+  }
+
+  .albums {
+    text-align: center;
+    font-size: 25px;
+    padding-top: 40px;
+    font-weight: 500;
   }
 }

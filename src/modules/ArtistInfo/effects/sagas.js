@@ -14,6 +14,7 @@ const {
     getArtistInfoRequest,
     getArtistInfoFailure,
     getArtistInfoSuccess,
+    getArtistAlbumsSuccess,
     clearArtistInfoResults,
 } = actions;
 
@@ -29,6 +30,15 @@ const HANDLERS = {
                     }
                 });
                 const {artist} = response.data;
+                const responseDisco = yield call(axiosAdapter, {
+                    method: 'get',
+                    params: {
+                        method: 'artist.gettopalbums',
+                        artist: payload,
+                    }
+                });
+                const {topalbums} = responseDisco.data;
+                yield put(getArtistAlbumsSuccess(topalbums));
                 yield put(getArtistInfoSuccess(artist));
             } else {
                 yield put(clearArtistInfoResults());

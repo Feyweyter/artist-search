@@ -9,7 +9,7 @@ import {LoaderScreen} from "../../components";
 const Index = () => {
     const dispatch = useDispatch();
     const {pathname} = useSelector((state) => state.router.location);
-    const {bio, isLoading} = useSelector((state) => state.ArtistInfo);
+    const {bio, isLoading, albums} = useSelector((state) => state.ArtistInfo);
     const {content = ''} = bio || {};
     const artist = pathname ? pathname.slice(1) : '';
 
@@ -18,12 +18,31 @@ const Index = () => {
         return () => dispatch(actions.clearArtistInfoResults());
     }, []);
 
+    const getData = () => {
+        if (isLoading) {
+            return <LoaderScreen/>
+        }
+        let component = <span/>;
+        if (albums.length) {
+            component = <span>
+                <div className={styles.albums}>Albums</div>
+                {albums.map(item =>
+                    <div key={item.mbid}>"{item.name}" playcount:&nbsp;
+                        {item.playcount}</div>)}
+                </span>;
+        }
+        return <span>
+                <div>{content}</div>
+            {component}
+            </span>
+    };
+
     return (
         <div className={styles.info}>
             <span className={styles.header}>
                 <Link className={styles.link} to="/">Back</Link><span className={styles.title}>{artist}</span>
             </span>
-            {isLoading ? <LoaderScreen/> : <div>{content}</div>}
+            {getData()}
         </div>
     );
 };
