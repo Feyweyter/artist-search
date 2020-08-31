@@ -18,13 +18,13 @@ const ArtistList = ({list, query}) => {
     }, [history]);
 
     return (
-        <div>
-            {list && list.map(item => (
-                <div key={item.name} className={styles.listItem}
+        <span>
+            {list && list.map((item, index) => (
+                <div key={item.mbid} id={`item${index}`} className={styles.listItem}
                      onClick={(e) => onClick(e, item.name)}>{item.name}</div>
             ))}
-            {!list.length && query && <NoResultsComponent />}
-        </div>
+            {!list.length && query && <NoResultsComponent/>}
+        </span>
     );
 };
 
