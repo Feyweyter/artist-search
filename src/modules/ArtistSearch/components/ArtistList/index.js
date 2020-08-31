@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, memo} from 'react';
 import {useHistory} from 'react-router-dom';
 import * as PropTypes from 'prop-types';
 
@@ -18,13 +18,13 @@ const ArtistList = ({list, query}) => {
     }, [history]);
 
     return (
-        <span>
+        <React.Fragment>
             {list && list.map((item, index) => (
-                <div key={item.mbid} id={`item${index}`} className={styles.listItem}
+                <div key={item.name} id={`item${index}`} className={styles.listItem}
                      onClick={(e) => onClick(e, item.name)}>{item.name}</div>
             ))}
             {!list.length && query && <NoResultsComponent/>}
-        </span>
+        </React.Fragment>
     );
 };
 
@@ -38,4 +38,4 @@ ArtistList.defaultProps = {
     query: '',
 };
 
-export default ArtistList;
+export default memo(ArtistList);

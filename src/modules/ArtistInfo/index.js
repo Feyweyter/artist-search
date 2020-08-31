@@ -27,7 +27,7 @@ const Index = () => {
             component = <span>
                 <div className={styles.albums}>Albums</div>
                 {albums.map(item =>
-                    <div key={item.mbid}>"{item.name}" playcount:&nbsp;
+                    <div key={item.name}>"{item.name}" playcount:&nbsp;
                         {item.playcount}</div>)}
                 </span>;
         }
@@ -38,7 +38,7 @@ const Index = () => {
     };
 
     return (
-        <div className={styles.info}>
+        <div className={styles.info} key={artist}>
             <span className={styles.header}>
                 <Link className={styles.link} to="/">Back</Link><span className={styles.title}>{artist}</span>
             </span>

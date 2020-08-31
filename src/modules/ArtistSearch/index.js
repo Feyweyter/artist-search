@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import Input from '@material-ui/core/Input';
 import actions from './effects/actions';
 import {useDispatch, useSelector} from 'react-redux';
@@ -12,15 +12,18 @@ const Index = () => {
     const {query, list, isLoading} = useSelector((state) => state.ArtistSearch);
     const [input, setInput] = useState(query);
 
-    const handleChange = (e) => {
+    const handleChange = useCallback((e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const val = e.target.value;
         setInput(val);
         dispatch(actions.getArtistsRequest(val));
-    };
+    }, [dispatch]);
 
     return (
-        <div className={styles.main}>
-            <Input autoFocus value={input} onChange={handleChange}/>
+        <div className={styles.main} key="search">
+            <Input autoFocus={true} fullWidth value={input} onChange={handleChange}
+                   placeholder="Search for your favorite artist"/>
             {isLoading ? <LoaderScreen/> : <ArtistList list={list} query={input}/>}
         </div>
     );
