@@ -1,13 +1,6 @@
-import {
-    put,
-    call,
-} from 'redux-saga/effects';
+import {call, put,} from 'redux-saga/effects';
 
-import {
-    axiosAdapter,
-    sagaGenerator,
-    constants,
-} from '../../../store/helpers';
+import {axiosAdapter, sagaGenerator,} from '../../../store/helpers';
 
 import actions from './actions';
 

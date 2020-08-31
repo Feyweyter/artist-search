@@ -1,7 +1,6 @@
 import React from 'react';
 import ArtistList from './index';
 import NoResultsComponent from '../../../../components/NoResults';
-import configureStore from 'redux-mock-store';
 import {shallow} from "enzyme";
 
 describe('ArtistList with items', () => {

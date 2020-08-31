@@ -1,13 +1,6 @@
-import React, {
-    Suspense,
-    lazy,
-} from 'react';
+import React from 'react';
 import {hot} from 'react-hot-loader/root';
-import {useDispatch, useSelector} from 'react-redux';
-import {
-    Route,
-    Switch,
-} from 'react-router-dom';
+import {Route, Switch,} from 'react-router-dom';
 
 import SearchPage from './SearchPage';
 import InfoPage from './InfoPage';

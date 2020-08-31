@@ -1,8 +1,4 @@
-import {
-  all,
-  takeEvery,
-  debounce,
-} from 'redux-saga/effects';
+import {all, takeEvery,} from 'redux-saga/effects';
 
 const sagaGenerator = (handlers) => function* sagaReducer() {
   const sagas = Object
