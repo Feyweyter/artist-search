@@ -60,12 +60,6 @@ const configureStore = (preloadedState = {}) => {
   // Add injectSaga method to our store
   store.injectSaga = createSagaInjector(sagaMiddleware.run);
 
-  // enable hot reloading for reducers in the development mode
-  // if (process.env.NODE_ENV !== 'production' && module.hot) {
-  //   module.hot.accept('./reducers', () => store.replaceReducer(createReducer()));
-  // }
-
-  // Return the modified store
   return store;
 };
 
