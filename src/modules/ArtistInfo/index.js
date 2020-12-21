@@ -5,11 +5,17 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import styles from './index.module.scss';
 import {LoaderScreen} from "../../components";
+import {createSelector} from "reselect";
+
+const selectAllData = createSelector(
+    state => state.ArtistInfo,
+    allData => allData
+);
 
 const Index = () => {
     const dispatch = useDispatch();
     const {pathname} = useSelector((state) => state.router.location);
-    const {bio, isLoading, albums} = useSelector((state) => state.ArtistInfo);
+    const {bio, isLoading, albums} = useSelector(selectAllData);
     const {content = ''} = bio || {};
     const artist = pathname ? pathname.slice(1) : '';
 
